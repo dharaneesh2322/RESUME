@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dharaneesh A.T — Resume</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brown-dark: #3B2314;
+    --brown-mid: #6B3E26;
+    --brown-warm: #A0522D;
+    --tan: #C4956A;
+    --cream: #F7F0E8;
+    --cream-dark: #EDE4D8;
+    --white: #FDFAF6;
+    --text-dark: #1C1009;
+    --text-mid: #4A3020;
+    --text-light: #7A6050;
+    --accent: #D4A96A;
+  }
+
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+  @keyframes lineGrow {
+    from { width: 0; } to { width: 100%; }
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream-dark);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 48px 16px;
+    animation: fadeIn 0.6s ease;
+  }
+
+  .page {
+    width: 900px;
+    max-width: 100%;
+    background: var(--white);
+    box-shadow: 0 32px 80px rgba(59,35,20,0.18), 0 4px 16px rgba(59,35,20,0.08);
+    display: grid;
+    grid-template-columns: 295px 1fr;
+    min-height: 1100px;
+    overflow: hidden;
+    border-radius: 2px;
+    animation: fadeSlideUp 0.7s cubic-bezier(.22,.68,0,1.2) both;
+  }
+
+  /* LEFT SIDEBAR */
+  .sidebar {
+    background: var(--brown-dark);
+    color: var(--cream);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .sidebar::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,169,106,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .photo-block {
+    background: var(--brown-mid);
+    padding: 40px 30px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .photo-ring {
+    width: 128px; height: 128px;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    padding: 4px;
+    background: var(--brown-dark);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    margin-bottom: 18px;
+    overflow: hidden;
+  }
+  .photo-initials {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--brown-warm), var(--tan));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 40px; font-weight: 900;
+    color: var(--white);
+    letter-spacing: 2px;
+  }
+
+  .sidebar-section {
+    padding: 24px 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .sidebar-section:last-child { border-bottom: none; }
+
+  .sidebar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sidebar-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(212,169,106,0.25);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    margin-bottom: 13px;
+    font-size: 12px;
+    color: rgba(247,240,232,0.82);
+    line-height: 1.5;
+  }
+  .contact-item:last-child { margin-bottom: 0; }
+  .contact-icon {
+    width: 15px; height: 15px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    opacity: 0.65;
+  }
+  .contact-item a { color: inherit; text-decoration: none; word-break: break-all; }
+  .contact-item a:hover { color: var(--accent); }
+
+  .skill-item { margin-bottom: 10px; }
+  .skill-name {
+    font-size: 11px;
+    color: rgba(247,240,232,0.68);
+    margin-bottom: 5px;
+  }
+  .skill-bar-bg {
+    height: 3px;
+    background: rgba(255,255,255,0.09);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--tan));
+    border-radius: 2px;
+    animation: lineGrow 1s cubic-bezier(.22,.68,0,1.2) both 0.5s;
+  }
+
+  .soft-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(212,169,106,0.18);
+    border-radius: 3px;
+    padding: 5px 10px;
+    font-size: 11px;
+    color: rgba(247,240,232,0.78);
+    margin: 4px 4px 0 0;
+  }
+  .soft-tag::before {
+    content: '◆';
+    font-size: 5px;
+    color: var(--accent);
+  }
+
+  /* RIGHT MAIN */
+  .main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero {
+    background: var(--cream);
+    padding: 42px 42px 34px;
+    border-bottom: 1px solid var(--cream-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 100px; height: 100px;
+    background: var(--brown-dark);
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+    opacity: 0.05;
+  }
+
+  .name {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--brown-dark);
+    letter-spacing: -0.5px;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .name span { color: var(--brown-warm); }
+
+  .title-pill {
+    display: inline-block;
+    background: var(--brown-dark);
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+
+  .summary {
+    font-size: 12.5px;
+    line-height: 1.78;
+    color: var(--text-mid);
+    max-width: 490px;
+    border-left: 3px solid var(--accent);
+    padding-left: 15px;
+  }
+
+  .content {
+    padding: 34px 42px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex: 1;
+  }
+
+  .sec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--brown-dark);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .sec-title::before {
+    content: '';
+    width: 24px; height: 2px;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .edu-row {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: 0 18px;
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px dashed var(--cream-dark);
+  }
+  .edu-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .edu-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.5px;
+    color: var(--text-light);
+    padding-top: 3px;
+    line-height: 1.7;
+  }
+  .edu-school {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--brown-dark);
+    margin-bottom: 3px;
+  }
+  .edu-sub { font-size: 11.5px; color: var(--text-light); }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+
+  .ach-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .ach-list li {
+    font-size: 12px;
+    color: var(--text-mid);
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    line-height: 1.55;
+  }
+  .ach-list li::before {
+    content: '▸';
+    color: var(--accent);
+    font-size: 9px;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  .proj-card {
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    border-radius: 3px;
+    padding: 12px 14px;
+    border-left: 3px solid var(--brown-warm);
+    margin-bottom: 9px;
+    transition: transform 0.18s, border-color 0.18s;
+  }
+  .proj-card:last-child { margin-bottom: 0; }
+  .proj-card:hover { transform: translateX(4px); border-left-color: var(--accent); }
+  .proj-name { font-size: 12.5px; font-weight: 600; color: var(--brown-dark); margin-bottom: 2px; }
+  .proj-tag { font-family: 'DM Mono', monospace; font-size: 9.5px; color: var(--text-light); }
+
+  .intern-block {
+    background: linear-gradient(135deg, var(--brown-dark), var(--brown-mid));
+    border-radius: 4px;
+    padding: 18px 20px;
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .intern-icon {
+    width: 42px; height: 42px;
+    background: rgba(212,169,106,0.12);
+    border: 1.5px solid rgba(212,169,106,0.35);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 17px;
+  }
+  .intern-body strong {
+    display: block;
+    color: var(--accent);
+    font-size: 9.5px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .intern-body p { font-size: 12px; line-height: 1.6; color: rgba(247,240,232,0.85); }
+
+  .footer {
+    background: var(--cream-dark);
+    padding: 13px 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(100,62,38,0.1);
+  }
+  .footer span {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--text-light);
+    letter-spacing: 1.5px;
+  }
+  .footer-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  @media (max-width: 680px) {
+    .page { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    body { padding: 0; }
+    .page { border-radius: 0; min-height: auto; }
+  }
+  @media print {
+    body { padding: 0; background: white; }
+    .page { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="photo-block">
+      <div class="photo-ring">
+        <div class="photo-initials">DA</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Contact</div>
+
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.01 1.17 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z"/></svg>
+        9080219115
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:dharaneesh.at.ece.2023@snsct.org">dharaneesh.at.ece.2023<br>@snsct.org</a>
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Jothipuram (PO), Coimbatore
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        <a href="https://www.linkedin.com/in/dharaneesh-a-t?" target="_blank">linkedin.com/in/dharaneesh-a-t</a>
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        <a href="https://github.com/dharaneesh2322" target="_blank">github.com/dharaneesh2322</a>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Technical Skills</div>
+      <div class="skill-item"><div class="skill-name">HTML5 / CSS3</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+      <div class="skill-item"><div class="skill-name">Python (Flask)</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:75%"></div></div></div>
+      <div class="skill-item"><div class="skill-name">JavaScript</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:65%"></div></div></div>
+      <div class="skill-item"><div class="skill-name">C / C++</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:70%"></div></div></div>
+      <div class="skill-item"><div class="skill-name">MySQL</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:68%"></div></div></div>
+      <div class="skill-item"><div class="skill-name">Git & GitHub</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:72%"></div></div></div>
+      <div class="skill-item"><div class="skill-name">REST APIs / JSON</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:60%"></div></div></div>
+      <div class="skill-item"><div class="skill-name">Data Structures</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:55%"></div></div></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Soft Skills</div>
+      <div>
+        <span class="soft-tag">Problem Solving</span>
+        <span class="soft-tag">Quick Learner</span>
+        <span class="soft-tag">Team Collaboration</span>
+        <span class="soft-tag">Communication</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <div class="hero">
+      <div class="name">DHARANEESH<span>.A.T</span></div>
+      <div class="title-pill">Enthusiastic Full Stack Developer</div>
+      <p class="summary">
+        Motivated aspiring Full Stack Developer with a strong foundation in Python, web development, and problem-solving. Seeking an internship opportunity to apply technical skills in building scalable web applications and gain real-world development experience.
+      </p>
+    </div>
+
+    <div class="content">
+
+      <!-- Education -->
+      <div>
+        <div class="sec-title">Education</div>
+        <div class="edu-row">
+          <div class="edu-year">2023 – 2027</div>
+          <div>
+            <div class="edu-school">SNS College of Technology</div>
+            <div class="edu-sub">B.E. Electronics & Communication Engineering</div>
+          </div>
+        </div>
+        <div class="edu-row">
+          <div class="edu-year">2022 – 2023</div>
+          <div>
+            <div class="edu-school">Sai Vidhya Nikethan Matric Hr Sec School</div>
+            <div class="edu-sub">Higher Secondary Certificate — 12th Grade</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievements + Projects -->
+      <div class="two-col">
+        <div>
+          <div class="sec-title">Achievements</div>
+          <ul class="ach-list">
+            <li>Completed structured learning in Full Stack Development</li>
+            <li>Built multiple mini-projects using Python and web technologies</li>
+            <li>Organized MOU signing with PETS Association</li>
+            <li>Participated in Hackathon event</li>
+            <li>Organized Santa 365 event serving the needy</li>
+          </ul>
+        </div>
+        <div>
+          <div class="sec-title">Projects</div>
+          <div class="proj-card">
+            <div class="proj-name">Car / Bike Rental Management</div>
+            <div class="proj-tag">Python · Web · Database</div>
+          </div>
+          <div class="proj-card">
+            <div class="proj-name">Cricket Score Board</div>
+            <div class="proj-tag">Python · Logic · UI</div>
+          </div>
+          <div class="proj-card">
+            <div class="proj-name">Contact Management System</div>
+            <div class="proj-tag">Python · CRUD · MySQL</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Internship -->
+      <div>
+        <div class="sec-title">Internship</div>
+        <div class="intern-block">
+          <div class="intern-icon">💼</div>
+          <div class="intern-body">
+            <strong>Full Stack Web Development</strong>
+            <p>Completed 1-month and 3-month internship programmes with hands-on experience across frontend, backend, and full deployment workflows in real-world project environments.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <span>DHARANEESH A.T</span>
+      <div class="footer-dot"></div>
+      <span>OPEN TO INTERNSHIP OPPORTUNITIES — 2025</span>
+    </div>
+
+  </main>
+
+</div>
+</body>
+</html>
